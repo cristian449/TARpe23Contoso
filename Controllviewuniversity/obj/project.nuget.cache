@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "zexqTzfTJ1XfRdMqWjiRYNIK14MwMZ2roK/I8koYbQDyb5gKjgfJCKz2CwHkSu8c1zeQTUZ1L4rJTd6VWRGOTw==",
+  "dgSpecHash": "5agnphLQw38RtEqlP6WCd6lRhT4cDGqn3jN9lJa4g1RIkrv3gGK8v3/tcGBz3UCi6Cx+qQ/N0iJ0EFT3Ud5jQw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Christian\\Desktop\\Programmeerimine Aasta 2\\Controllviewuniversity\\Controllviewuniversity\\Controllviewuniversity.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Christian\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Christian\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
+    "C:\\Users\\Christian\\.nuget\\packages\\fluentassertions\\6.12.0\\fluentassertions.6.12.0.nupkg.sha512",
     "C:\\Users\\Christian\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\8.0.8\\microsoft.aspnetcore.diagnostics.entityframeworkcore.8.0.8.nupkg.sha512",
     "C:\\Users\\Christian\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Christian\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
