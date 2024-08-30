@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Controllviewuniversity")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a8aafc97534a2373448a73971e6fdc398c2ad2b7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+65ded3fe1a302fa96cdbf8e18bf0e01fb8aad394")]
 [assembly: System.Reflection.AssemblyProductAttribute("Controllviewuniversity")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Controllviewuniversity")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

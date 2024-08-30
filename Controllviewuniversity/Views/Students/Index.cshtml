@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Contollviewuniversity.Models.Student>
+﻿@model IEnumerable<Controllviewuniversity.Models.Student>
 
     @{
-        ViewData["Title"] = "Index"
+        ViewData["Title"] = "Index";
     }
 
     <h1>Õpilaste Index</h1>
@@ -13,10 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(Model => Model.Lastname)
+                @Html.DisplayNameFor(Model => Model.LastName)
             </th>
             <th>
-                @Html.DisplayNameFor(Model => Model.FirsMidname)
+                @Html.DisplayNameFor(Model => Model.FirstMidName)
             </th>
             <th>
                 @Html.DisplayNameFor(Model => Model.EnrollmentDate)
