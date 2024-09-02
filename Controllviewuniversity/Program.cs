@@ -1,4 +1,4 @@
-using Controllviewuniversity.Data;
+using ContosoUniversity.Data;
 using FluentAssertions.Common;
 using Microsoft.EntityFrameworkCore;
 

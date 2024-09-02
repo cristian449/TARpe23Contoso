@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace Controllviewuniversity.Models
+namespace ContosoUniversity.Models
 {
     public enum Grade
     {

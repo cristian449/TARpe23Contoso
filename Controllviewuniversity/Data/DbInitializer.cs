@@ -1,6 +1,6 @@
-﻿using Controllviewuniversity.Models;
+﻿using ContosoUniversity.Models;
 
-namespace Controllviewuniversity.Data
+namespace ContosoUniversity.Data
 {
     public class DbInitializer
     {

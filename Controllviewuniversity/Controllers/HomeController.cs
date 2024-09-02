@@ -1,8 +1,8 @@
-using Controllviewuniversity.Models;
+using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace Controllviewuniversity.Controllers
+namespace ContosoUniversity.Controllers
 {
     public class HomeController : Controller
     {

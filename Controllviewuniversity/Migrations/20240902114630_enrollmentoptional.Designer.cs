@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContosoUniversity.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20240830061751_init")]
-    partial class init
+    [Migration("20240902114630_enrollmentoptional")]
+    partial class enrollmentoptional
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace ContosoUniversity.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Controllviewuniversity.Models.Course", b =>
+            modelBuilder.Entity("ContosoUniversity.Models.Course", b =>
                 {
                     b.Property<int>("CourseID")
                         .HasColumnType("int");
@@ -42,7 +42,7 @@ namespace ContosoUniversity.Migrations
                     b.ToTable("Course", (string)null);
                 });
 
-            modelBuilder.Entity("Controllviewuniversity.Models.Enrollment", b =>
+            modelBuilder.Entity("ContosoUniversity.Models.Enrollment", b =>
                 {
                     b.Property<int>("EnrollmentID")
                         .ValueGeneratedOnAdd()
@@ -68,7 +68,7 @@ namespace ContosoUniversity.Migrations
                     b.ToTable("Enrollment", (string)null);
                 });
 
-            modelBuilder.Entity("Controllviewuniversity.Models.Student", b =>
+            modelBuilder.Entity("ContosoUniversity.Models.Student", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -92,15 +92,15 @@ namespace ContosoUniversity.Migrations
                     b.ToTable("Student", (string)null);
                 });
 
-            modelBuilder.Entity("Controllviewuniversity.Models.Enrollment", b =>
+            modelBuilder.Entity("ContosoUniversity.Models.Enrollment", b =>
                 {
-                    b.HasOne("Controllviewuniversity.Models.Course", "Course")
+                    b.HasOne("ContosoUniversity.Models.Course", "Course")
                         .WithMany("Enrollments")
                         .HasForeignKey("CourseID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Controllviewuniversity.Models.Student", "Student")
+                    b.HasOne("ContosoUniversity.Models.Student", "Student")
                         .WithMany("Enrollments")
                         .HasForeignKey("StudentID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -111,12 +111,12 @@ namespace ContosoUniversity.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("Controllviewuniversity.Models.Course", b =>
+            modelBuilder.Entity("ContosoUniversity.Models.Course", b =>
                 {
                     b.Navigation("Enrollments");
                 });
 
-            modelBuilder.Entity("Controllviewuniversity.Models.Student", b =>
+            modelBuilder.Entity("ContosoUniversity.Models.Student", b =>
                 {
                     b.Navigation("Enrollments");
                 });
