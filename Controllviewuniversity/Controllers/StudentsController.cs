@@ -113,9 +113,7 @@ namespace ContosoUniversity.Controllers
             }
 
             return View(student);
-            // λ Mute crowbar wielding scientist λ
 
-            // Strange intergalactic businessman saying "Its time to choose"
 
         }
         //Delete POST meetod, teostab andmebaasi vajaliku muudatuse. ehk kustutab objekti ära
@@ -165,7 +163,7 @@ namespace ContosoUniversity.Controllers
             return View(student);
         }
 
-       
+
         [HttpPost, ActionName("ViewDetails")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ViewDetailsPost(int? id)
@@ -213,35 +211,54 @@ namespace ContosoUniversity.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(student);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!StudentExists(student.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _context.Update(student);
+                await _context.SaveChangesAsync();
+            }                        
+            if (!StudentExists(student.ID))
+            {
+              return NotFound();
             }
-            return View(student);
+         
+                
+            return RedirectToAction(nameof(Index));
+
         }
 
-        
+
         private bool StudentExists(int id)
         {
             return _context.Students.Any(e => e.ID == id);
         }
 
+        public async Task<IActionResult> Clone(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var student = await _context.Students.AsNoTracking().FirstOrDefaultAsync(m => m.ID == id);
+            if (student == null)
+            {
+                return NotFound();
+            }
 
 
+            var clonedstudent = new Student
+            {
+                FirstMidName = student.FirstMidName,
+                LastName = student.LastName,
+                EnrollmentDate = student.EnrollmentDate
+            };
+
+            _context.Students.Add(clonedstudent);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+            //Painful very painful
+
+
+        }
     }
 }
 
