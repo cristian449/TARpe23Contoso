@@ -213,13 +213,13 @@ namespace ContosoUniversity.Controllers
             {
                 _context.Update(student);
                 await _context.SaveChangesAsync();
-            }                        
+            }
             if (!StudentExists(student.ID))
             {
-              return NotFound();
+                return NotFound();
             }
-         
-                
+
+
             return RedirectToAction(nameof(Index));
 
         }
@@ -258,8 +258,19 @@ namespace ContosoUniversity.Controllers
             //Painful very painful
 
 
+
+            //Merge is even MORE painful, fun
+
         }
+        public async Task<IActionResult> Merge()
+        {
+            return View(await _context.Students.ToListAsync());
+        }
+
+
+
     }
+
 }
 
 

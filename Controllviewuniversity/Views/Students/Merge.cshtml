@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ContosoUniversity.Models.Student>
+
+@{
+    ViewData["Title"] = "Merge";
+}
+
+<h1>Merge Students</h1>
+
+<h4>merge</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Merge">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Enrollment Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var student in Model)
+                    {
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="selectedStudents" value="@student.ID" />
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => student.LastName)</td>
+                            <td>@Html.DisplayFor(modelItem => student.FirstMidName)</td>
+                            <td>@Html.DisplayFor(modelItem => student.EnrollmentDate)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="form-group">
+                <input type="submit" value="Merge" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
