@@ -15,24 +15,14 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Select</th>
-                        <th>Last Name</th>
-                        <th>First Name</th>
-                        <th>Enrollment Date</th>
+                       
+
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var student in Model)
-                    {
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="selectedStudents" value="@student.ID" />
-                            </td>
-                            <td>@Html.DisplayFor(modelItem => student.LastName)</td>
-                            <td>@Html.DisplayFor(modelItem => student.FirstMidName)</td>
-                            <td>@Html.DisplayFor(modelItem => student.EnrollmentDate)</td>
-                        </tr>
-                    }
+                    
+
+
                 </tbody>
             </table>
             <div class="form-group">
