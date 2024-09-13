@@ -41,6 +41,6 @@ namespace ContosoUniversity.Models
 
     public enum Mood
     {
-        Happy, Sad, Anxious, Puzzled, HighAF
+        Happy, Sad, Anxious, Puzzled, HighAF, Darklord
     }
 }
