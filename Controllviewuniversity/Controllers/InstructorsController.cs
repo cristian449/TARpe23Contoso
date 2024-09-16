@@ -181,6 +181,42 @@ namespace ContosoUniversity.Controllers
         {
             return _context.Instructors.Any(e => e.ID == id);
         }
+
+
+        public async Task<IActionResult> Clone(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var instructor = await _context.Instructors
+                .Include(i => i.OfficeAssignment) 
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.ID == id);
+
+            if (instructor == null)
+            {
+                return NotFound();
+            }
+
+            
+            var ClonedInstructor = new Instructor
+            {
+                FirstMidName = instructor.FirstMidName,
+                LastName = instructor.LastName,
+                HireDate = instructor.HireDate,
+                OfficeAssignment = new OfficeAssignment
+                {
+                    Location = instructor.OfficeAssignment?.Location 
+                }
+            };
+
+            _context.Instructors.Add(ClonedInstructor);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
 

@@ -37,6 +37,7 @@ namespace ContosoUniversity.Models
         [Display(Name = "Kutsetunnistuse #:")]
         public string? VocationCredential { get; set; } //kutsekoja kutseregistri tunnistuse väljastuse number
         public int? WorkYears { get; set; } //tööaastaid selles asutuses
+
     }
 
     public enum Mood
