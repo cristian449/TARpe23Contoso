@@ -108,14 +108,14 @@ namespace ContosoUniversity.Controllers
 
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null) //Kui id on tühi, siis õpilast ei leita
+            if (id == null) //Kui id on tühi, siis instructorit ei leita
             {
                 return NotFound();
             }
 
-            var instructor = await _context.Instructors.FirstOrDefaultAsync(M => M.ID == id); //tehakse õpilase objekt admebaasis oleva id järgi
+            var instructor = await _context.Instructors.FirstOrDefaultAsync(M => M.ID == id); //tehakse instructor objekt admebaasis oleva id järgi
 
-            if (instructor == null) //Kui student objekt on tühi/null siis ka õpilast ei leia
+            if (instructor == null) //Kui instructor objekt on tühi/null siis ka õpilast ei leia
             {
                 return NotFound();
             }
@@ -130,7 +130,7 @@ namespace ContosoUniversity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var instructor = await _context.Instructors.FindAsync(id); //ostsime andmebaasist õpilast id järgi ja paneme ta students nimelisse objekti voi muutujasse
+            var instructor = await _context.Instructors.FindAsync(id); //ostsime andmebaasist Instructori id järgi ja paneme ta instructor nimelisse objekti voi muutujasse
             _context.Instructors.Remove(instructor);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -222,51 +222,7 @@ namespace ContosoUniversity.Controllers
 
 
 
-        [HttpGet]
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var instructor = await _context.Instructors.FindAsync(id);
-            if (instructor == null)
-            {
-                return NotFound();
-            }
-            return View(instructor);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,LastName,FirstMidName,HireDate")] Instructor instructor)
-        {
-            if (id != instructor.ID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                _context.Update(instructor);
-                await _context.SaveChangesAsync();
-            }
-            if (!InstructorsExists(instructor.ID))
-            {
-                return NotFound();
-            }
-
-
-            return RedirectToAction(nameof(Index));
-
-        }
-
-
-        private bool InstructorsExists(int id)
-        {
-            return _context.Instructors.Any(e => e.ID == id);
-        }
     }
 }
 
