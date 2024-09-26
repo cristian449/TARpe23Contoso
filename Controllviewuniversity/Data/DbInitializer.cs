@@ -56,33 +56,33 @@ namespace ContosoUniversity.Data
             context.Courses.AddRange(courses);
             context.SaveChanges();
 
-            if (context.Enrollments.Any()) { return; }
+            //if (context.Enrollments.Any()) { return; }
 
-            var enrollments = new Enrollment[]
-            {
-                new Enrollment{StudentID=1, CourseID=1050, Grade=Grade.A },
-                new Enrollment{StudentID=1, CourseID=4822, Grade=Grade.C },
-                new Enrollment{StudentID=1, CourseID=4821, Grade=Grade.B },
+            //var enrollments = new Enrollment[]
+            //{
+            //    new Enrollment{StudentID=1, CourseID=1050, Grade=Grade.A },
+            //    new Enrollment{StudentID=1, CourseID=4822, Grade=Grade.C },
+            //    new Enrollment{StudentID=1, CourseID=4821, Grade=Grade.B },
 
-                new Enrollment{StudentID=2, CourseID=1845, Grade=Grade.B },
-                new Enrollment{StudentID=2, CourseID=3141, Grade=Grade.F },
-                new Enrollment{StudentID=2, CourseID=2021, Grade=Grade.F },
+            //    new Enrollment{StudentID=2, CourseID=1845, Grade=Grade.B },
+            //    new Enrollment{StudentID=2, CourseID=3141, Grade=Grade.F },
+            //    new Enrollment{StudentID=2, CourseID=2021, Grade=Grade.F },
 
-                new Enrollment{StudentID=3, CourseID=1050},
+            //    new Enrollment{StudentID=3, CourseID=1050},
 
-                new Enrollment{StudentID=4, CourseID=1050},
-                new Enrollment{StudentID=4, CourseID=4822, Grade=Grade.F },
+            //    new Enrollment{StudentID=4, CourseID=1050},
+            //    new Enrollment{StudentID=4, CourseID=4822, Grade=Grade.F },
 
-                new Enrollment{StudentID=5, CourseID=4822, Grade=Grade.C },
+            //    new Enrollment{StudentID=5, CourseID=4822, Grade=Grade.C },
 
-                new Enrollment{StudentID=6, CourseID=1045},
+            //    new Enrollment{StudentID=6, CourseID=1045},
 
-                new Enrollment{StudentID=7, CourseID=3141, Grade=Grade.A },
+            //    new Enrollment{StudentID=7, CourseID=3141, Grade=Grade.A },
 
-                new Enrollment{StudentID=10, CourseID=6666, Grade=Grade.A },
-            };
-            context.Enrollments.AddRange(enrollments);
-            context.SaveChanges();
+            //    new Enrollment{StudentID=10, CourseID=6666, Grade=Grade.A },
+            //};
+            //context.Enrollments.AddRange(enrollments);
+            //context.SaveChanges();
 
 
             if (context.Instructors.Any())
@@ -113,14 +113,7 @@ namespace ContosoUniversity.Data
             }
             var departments = new Department[]
             {
-                new Department {
-                Name = "InfoTechnology",
-                Budget = 0,
-                StarDate = DateTime.Parse("2025/09/24"),
-                Cigarettes = 15,
-                DarkLord = "The darklord of the East \"Bimpson\" with the power of ****** at his fingertips he shows no mercy",
-                InstructorID = 1
-                },
+                new Department {Name = "InfoTechnology", Budget = 0, StarDate = DateTime.Parse("2025/09/24"), Cigarettes = 15, DarkLord = "The darklord of the East \"Bimpson\" with the power of ****** at his fingertips he shows no mercy", InstructorID = 0},
 
                 new Department {
                 Name = "The dark arts",

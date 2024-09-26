@@ -4,7 +4,7 @@
 }
 <h1>Departments</h1>
 <p>
-    <a asp action="Create">Make a new department</a>
+    <a asp-action="Create">Make a new department</a>
 </p>
 <table class="table">
     <thead>
@@ -35,7 +35,7 @@
                     <a asp-action="Details" asp-route-id="@department.DepartmentID" class="btn btn-dark">Details</a>
                     <a asp-action="Edit" asp-route-id="@department.DepartmentID" class="btn btn-dark">Edit</a>
                     <a asp-action="Edit Admin" asp-route-id="@department.DepartmentID" class="btn btn-dark">EditAdmin</a>
-                    <a asp-action="Clone" asp-route-id="@department.DepartmentID" class="btn btn-dark"></a>
+                    <a asp-action="Clone" asp-route-id="@department.DepartmentID" class="btn btn-dark">Clone</a>
                     <a asp-action="Delete" asp-route-id="@department.DepartmentID" class="btn btn-dark">Delete</a>
                 </td>
 
