@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ContosoUniversity.Migrations
 {
     /// <inheritdoc />
-    public partial class newmigration9 : Migration
+    public partial class departmentmodelupdate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -55,7 +55,7 @@ namespace ContosoUniversity.Migrations
                     StarDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DarkLord = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Cigarettes = table.Column<int>(type: "int", nullable: true),
-                    InstructorID = table.Column<int>(type: "int", nullable: true),
+                    InstructorID = table.Column<int>(type: "int", nullable: false),
                     RowVersion = table.Column<byte>(type: "tinyint", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
@@ -65,7 +65,8 @@ namespace ContosoUniversity.Migrations
                         name: "FK_Departments_Instructors_InstructorID",
                         column: x => x.InstructorID,
                         principalTable: "Instructors",
-                        principalColumn: "ID");
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

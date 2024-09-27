@@ -26,7 +26,7 @@ namespace ContosoUniversity.Models
         
         public int? Cigarettes { get; set; }
 
-        public int? InstructorID { get; set; }
+        public int InstructorID { get; set; }
         [Timestamp]
         public byte? RowVersion { get; set; }
 

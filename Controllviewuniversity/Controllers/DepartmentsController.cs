@@ -54,7 +54,7 @@ namespace ContosoUniversity.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Budget,StarDate,RowVersion,InstructorID,Cigarettes,DarkLord")] Department department)
+        public async Task<IActionResult> Create([Bind("ID,Name,Budget,StarDate,RowVersion,InstructorID,Cigarettes,DarkLord")] Department department)
         {
             if (ModelState.IsValid)
             {
@@ -103,5 +103,42 @@ namespace ContosoUniversity.Controllers
             return RedirectToAction("Index");
         }
 
+
+        [HttpGet]
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var department = await _context.Departments.FindAsync(id);
+            if (department == null)
+            {
+                return NotFound();
+            }
+            return View(department);
+
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit([Bind("Name,Budget,StarDate,RowVersion,InstructorID,Cigarettes,DarkLord")] Department department)
+        {
+
+            if (ModelState.IsValid)
+            {
+                _context.Update(department);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FullName", department.InstructorID);
+            return View(department);
+
+
+
+        }
     }
 }
