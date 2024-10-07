@@ -25,7 +25,7 @@
         {
             <tr>
                 <td> @Html.DisplayFor(modelItem => department.Name)</td>
-                <td> @Html.DisplayFor(modelItem => department.Administrator.LastName)</td>
+                <td> @Html.DisplayFor(modelItem => department.Administrator.FullName)</td>
                 <td> @Html.DisplayFor(modelItem => department.Budget)</td>
                 <td> @Html.DisplayFor(modelItem => department.DarkLord)</td>
                 <td> @Html.DisplayFor(modelItem => department.Cigarettes)</td>
@@ -37,6 +37,7 @@
                     <a asp-action="Edit Admin" asp-route-id="@department.DepartmentID" class="btn btn-dark">EditAdmin</a>
                     <a asp-action="Clone" asp-route-id="@department.DepartmentID" class="btn btn-dark">Clone</a>
                     <a asp-action="Delete" asp-route-id="@department.DepartmentID" class="btn btn-success">Delete</a>
+                    <a asp-action="BaseOn" asp-route-id="@department.DepartmentID" class="btn btn-success">BaseOn</a>
                 </td>
 
             </tr>

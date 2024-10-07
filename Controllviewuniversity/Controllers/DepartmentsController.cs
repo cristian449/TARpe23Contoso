@@ -107,7 +107,6 @@ namespace ContosoUniversity.Controllers
 
 
         [HttpGet]
-
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -120,27 +119,53 @@ namespace ContosoUniversity.Controllers
             {
                 return NotFound();
             }
+
+            ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FullName", department.InstructorID);
+
             return View(department);
-            
         }
+
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([Bind("Name,Budget,StarDate,RowVersion,InstructorID,Cigarettes,DarkLord")] Department department)
+        public async Task<IActionResult> Edit(int id, [Bind("DepartmentID, Name, Budget, StarDate, RowVersion, InstructorID, Cigarettes, DarkLord")] Department department)
         {
+            // Ensure the DepartmentID from the route matches the model's ID
+            if (id != department.DepartmentID)
+            {
+                return NotFound();
+            }
 
             if (ModelState.IsValid)
             {
-                _context.Update(department);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                try
+                {
+                    _context.Update(department);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!DepartmentExists(department.DepartmentID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
             }
+
+            // Repopulate InstructorID dropdown in case of a model validation error
             ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FullName", department.InstructorID);
             return View(department);
+        }
 
-
-
+        private bool DepartmentExists(int id)
+        {
+            return _context.Departments.Any(e => e.DepartmentID == id);
         }
 
 
