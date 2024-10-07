@@ -70,7 +70,7 @@ namespace ContosoUniversity.Controllers
             return View(department);
         }
 
-        public async Task<IActionResult> Delete(int? id)
+       public async Task<IActionResult> Delete(int? id)
         {
 
             if (id == null)
