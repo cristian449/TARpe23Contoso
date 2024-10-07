@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ContosoUniversity.Migrations
 {
     /// <inheritdoc />
-    public partial class departmentmodelupdate : Migration
+    public partial class FIXTHEBLOODYINSTRUCTORSPLS1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,7 @@ namespace ContosoUniversity.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     HireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Mood = table.Column<int>(type: "int", nullable: true),
@@ -55,7 +55,7 @@ namespace ContosoUniversity.Migrations
                     StarDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DarkLord = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Cigarettes = table.Column<int>(type: "int", nullable: true),
-                    InstructorID = table.Column<int>(type: "int", nullable: false),
+                    InstructorID = table.Column<int>(type: "int", nullable: true),
                     RowVersion = table.Column<byte>(type: "tinyint", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
@@ -65,8 +65,7 @@ namespace ContosoUniversity.Migrations
                         name: "FK_Departments_Instructors_InstructorID",
                         column: x => x.InstructorID,
                         principalTable: "Instructors",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(

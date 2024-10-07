@@ -59,7 +59,9 @@ namespace ContosoUniversity.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(department);
+
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction("Index");
 
             }
@@ -119,7 +121,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
             return View(department);
-
+            
         }
 
 

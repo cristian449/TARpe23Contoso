@@ -84,7 +84,7 @@ namespace ContosoUniversity.Migrations
                     b.Property<string>("DarkLord")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("InstructorID")
+                    b.Property<int?>("InstructorID")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -152,8 +152,8 @@ namespace ContosoUniversity.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<int?>("Mood")
                         .HasColumnType("int");
@@ -238,9 +238,7 @@ namespace ContosoUniversity.Migrations
                 {
                     b.HasOne("ContosoUniversity.Models.Instructor", "Administrator")
                         .WithMany()
-                        .HasForeignKey("InstructorID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("InstructorID");
 
                     b.Navigation("Administrator");
                 });

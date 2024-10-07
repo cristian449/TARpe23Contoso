@@ -8,7 +8,7 @@ namespace ContosoUniversity.Models
         [Key]
         public int ID { get; set; }
         [Required]
-        [StringLength(50)]
+        [StringLength(80)]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         [Required]
