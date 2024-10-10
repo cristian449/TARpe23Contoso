@@ -18,36 +18,47 @@ namespace ContosoUniversity.Controllers
 
 
         public async Task<IActionResult> Index()
-        { 
+        {
             var schoolContext = _context.Courses;
             return View(await schoolContext.ToListAsync());
         }
 
 
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var course = _context.Courses.FirstOrDefault(m => m.CourseID == id);
+            var course = await _context.Courses
+                .FirstOrDefaultAsync(m => m.CourseID == id);
+            if (course == null)
+            {
+                return NotFound();
+            }
 
-            ViewBag.Action = "Details"; 
-            return View("DetailsDelete", course);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null) return NotFound();
-
-            var course = await _context.Courses.FirstOrDefaultAsync(m => m.CourseID == id);
-            if (course == null) return NotFound();
-
+            ViewData["Action"] = "Details";
             return View("DetailsDelete", course); 
         }
 
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var course = await _context.Courses
+                .FirstOrDefaultAsync(m => m.CourseID == id);
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            ViewData["Action"] = "Delete";
+            return View("DetailsDelete", course);
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -58,6 +69,7 @@ namespace ContosoUniversity.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+
     }
-    
 }
