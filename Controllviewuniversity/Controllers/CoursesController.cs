@@ -62,6 +62,58 @@ namespace ContosoUniversity.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Create()
+        {
+            return View("CreateEdit", new Course());
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("CourseID,Title,Credits")] Course course)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(course);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View("CreateEdit", course);
+        }
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var course = await _context.Courses.FindAsync(id);
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            return View("CreateEdit", course);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("CourseID,Title,Credits")] Course course)
+        {
+            if (id != course.CourseID)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {  
+              
+                    _context.Update(course);
+                    await _context.SaveChangesAsync();
+                
+                return RedirectToAction(nameof(Index));
+            }
+            return View("CreateEdit", course);
+        }
     }
 }
