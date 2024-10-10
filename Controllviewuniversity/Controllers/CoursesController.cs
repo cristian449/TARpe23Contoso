@@ -73,27 +73,27 @@ namespace ContosoUniversity.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(course);
+                _context.Courses.Add(course);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View("CreateEdit", course);
+            return View("CreateEdit", course); // Specify the shared view
         }
 
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (id == null) // Fix: should be id instead of CourseID
             {
                 return NotFound();
             }
 
-            var course = await _context.Courses.FindAsync(id);
+            var course = await _context.Courses.FindAsync(id); // Fix: should be Courses instead of Course
             if (course == null)
             {
                 return NotFound();
             }
-
-            return View("CreateEdit", course);
+            return View("CreateEdit", course); // Specify the shared view
         }
 
         [HttpPost]
@@ -106,14 +106,23 @@ namespace ContosoUniversity.Controllers
             }
 
             if (ModelState.IsValid)
-            {  
-              
-                    _context.Update(course);
-                    await _context.SaveChangesAsync();
-                
+            {
+                _context.Update(course);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View("CreateEdit", course);
+
+            if (!CourseExists(course.CourseID)) // Fix: should check CourseID, not ID
+            {
+                return NotFound();
+            }
+
+            return View("CreateEdit", course); // Specify the shared view
+        }
+
+        private bool CourseExists(int id)
+        {
+            return _context.Courses.Any(e => e.CourseID == id); 
         }
     }
 }

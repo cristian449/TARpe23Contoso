@@ -18,14 +18,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Christian\Desktop\Programmeerimine Aasta 2\Controllviewuniversity\Controllviewuniversity
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Christian/Desktop/Programmeerimine Aasta 2/Controllviewuniversity/Controllviewuniversity/Views/Courses/CreateEdit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlc1xDcmVhdGVFZGl0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Christian/Desktop/Programmeerimine Aasta 2/Controllviewuniversity/Controllviewuniversity/Views/Courses/DetailsDelete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlc1xEZXRhaWxzRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Christian/Desktop/Programmeerimine Aasta 2/Controllviewuniversity/Controllviewuniversity/Views/Courses/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
