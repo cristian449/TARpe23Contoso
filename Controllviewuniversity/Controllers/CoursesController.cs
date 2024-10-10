@@ -41,10 +41,7 @@ namespace ContosoUniversity.Controllers
 
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) { return NotFound(); }
 
             var course = await _context.Courses
                 .FirstOrDefaultAsync(m => m.CourseID == id);
@@ -55,7 +52,7 @@ namespace ContosoUniversity.Controllers
             return View("DetailsDelete", course);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
