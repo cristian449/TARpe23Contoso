@@ -23,106 +23,56 @@ namespace ContosoUniversity.Controllers
             return View(await schoolContext.ToListAsync());
         }
 
-
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var course = await _context.Courses
-                .FirstOrDefaultAsync(m => m.CourseID == id);
-            if (course == null) {return NotFound();}
+            var course = await _context.Courses.FirstOrDefaultAsync(M => M.CourseID == id);
 
-            ViewData["Action"] = "Details";
-            return View("DetailsDelete", course); 
-        }
-
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null) { return NotFound(); }
-
-            var course = await _context.Courses
-                .FirstOrDefaultAsync(m => m.CourseID == id);
-           
-            if (course == null) {return NotFound();}
-
-            ViewData["Action"] = "Delete";
-            return View("DetailsDelete", course);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var course = await _context.Courses.FindAsync(id);
-            _context.Courses.Remove(course);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        public IActionResult Create()
-        {
-            return View("CreateEdit", new Course());
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CourseID,Title,Credits")] Course course)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Courses.Add(course);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View("CreateEdit", course); // Specify the shared view
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null) // Fix: should be id instead of CourseID
-            {
-                return NotFound();
-            }
-
-            var course = await _context.Courses.FindAsync(id); // Fix: should be Courses instead of Course
             if (course == null)
             {
                 return NotFound();
             }
-            return View("CreateEdit", course); // Specify the shared view
+
+            ViewData["ActionType"] = "Delete";  // Set action type to Delete
+            return View("DetailsDelete", course);
         }
 
-        [HttpPost]
+        public async Task<IActionResult> ViewDetails(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var course = await _context.Courses.FirstOrDefaultAsync(M => M.CourseID == id);
+
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            ViewData["ActionType"] = "View";  // Set action type to View
+            return View("DetailsDelete", course);
+        }
+
+
+        [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CourseID,Title,Credits")] Course course)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (id != course.CourseID)
+            var course = await _context.Courses.FindAsync(id);
+            if (course == null)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
-                _context.Update(course);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-
-            if (!CourseExists(course.CourseID)) // Fix: should check CourseID, not ID
-            {
-                return NotFound();
-            }
-
-            return View("CreateEdit", course); // Specify the shared view
-        }
-
-        private bool CourseExists(int id)
-        {
-            return _context.Courses.Any(e => e.CourseID == id); 
+            _context.Courses.Remove(course);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
