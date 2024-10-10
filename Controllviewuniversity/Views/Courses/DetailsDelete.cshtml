@@ -34,7 +34,7 @@
 <div>
     @if (ViewData["IsDelete"] != null && (bool)ViewData["IsDelete"])
     {
-        <form asp-action="Delete" method="post";">
+        <form asp-action="Delete" method="post" ;">
             <input type="hidden" name="id" value="@Model.CourseID" />
             <button type="submit" class="btn btn-danger">Delete</button>
         </form>
