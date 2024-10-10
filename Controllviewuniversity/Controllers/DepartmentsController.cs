@@ -4,6 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.SqlServer.Server;
+using System.Globalization;
+using System.Security.Cryptography;
+using System.Security.Permissions;
+using System.Text.Encodings.Web;
 
 namespace ContosoUniversity.Controllers
 {
@@ -226,6 +231,4 @@ namespace ContosoUniversity.Controllers
         }
     }
 }
-
-
 
