@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace ContosoUniversity.Controllers
 {
@@ -23,56 +24,7 @@ namespace ContosoUniversity.Controllers
             return View(await schoolContext.ToListAsync());
         }
 
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+       
 
-            var course = await _context.Courses.FirstOrDefaultAsync(M => M.CourseID == id);
-
-            if (course == null)
-            {
-                return NotFound();
-            }
-
-            ViewData["ActionType"] = "Delete";  // Set action type to Delete
-            return View("DetailsDelete", course);
-        }
-
-        public async Task<IActionResult> ViewDetails(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var course = await _context.Courses.FirstOrDefaultAsync(M => M.CourseID == id);
-
-            if (course == null)
-            {
-                return NotFound();
-            }
-
-            ViewData["ActionType"] = "View";  // Set action type to View
-            return View("DetailsDelete", course);
-        }
-
-
-        [HttpPost, ActionName("DeleteConfirmed")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var course = await _context.Courses.FindAsync(id);
-            if (course == null)
-            {
-                return NotFound();
-            }
-
-            _context.Courses.Remove(course);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
     }
 }
