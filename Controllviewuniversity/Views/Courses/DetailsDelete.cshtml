@@ -1,0 +1,51 @@
+﻿@model ContosoUniversity.Models.Course
+
+@{
+    ViewData["Title"] = "Course Details";
+}
+
+<h1>@Model.Title</h1>
+
+<div>
+    <h4>Course</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CourseID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Credits)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Credits)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    @if (ViewData["IsDelete"] != null && (bool)ViewData["IsDelete"])
+    {
+        <form asp-action="Delete" method="post" ;">
+            <input type="hidden" name="id" value="@Model.CourseID" />
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    }
+    else
+    {
+        <a asp-action="Edit" asp-route-id="@Model.CourseID" class="btn btn-primary">Edit</a>
+        <a asp-action="Clone" asp-route-id="@Model.CourseID" class="btn btn-secondary">Clone</a>
+    }
+
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+
