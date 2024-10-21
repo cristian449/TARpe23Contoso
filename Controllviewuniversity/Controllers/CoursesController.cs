@@ -169,5 +169,31 @@ namespace ContosoUniversity.Controllers
         }
 
 
+        public async Task<IActionResult> Clone(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var course = await _context.Courses.AsNoTracking().FirstOrDefaultAsync(m => m.CourseID == id);
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+
+            var clonedcourse = new Course
+            {
+                Title = course.Title,
+                Credits = course.Credits,
+            };
+
+            _context.Courses.Add(clonedcourse);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+
     }
 }
