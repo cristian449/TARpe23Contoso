@@ -97,11 +97,10 @@ namespace ContosoUniversity.Controllers
         // GET: Create
         public IActionResult Create()
         {
-            ViewData["IsEdit"] = false; // Set flag to indicate "Create" view
+            ViewData["IsEdit"] = false;
             return View("CreateEdit", new Course());
         }
 
-        // POST: Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Title, Credits")] Course course)
@@ -115,7 +114,7 @@ namespace ContosoUniversity.Controllers
             return View("CreateEdit", course);
         }
 
-        // GET: Edit
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -129,11 +128,11 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            ViewData["IsEdit"] = true; // Set flag to indicate "Edit" view
+            ViewData["IsEdit"] = true;
             return View("CreateEdit", course);
         }
 
-        // POST: Edit
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CourseID, Title, Credits")] Course course)
@@ -170,6 +169,31 @@ namespace ContosoUniversity.Controllers
         {
             return _context.Courses.Any(e => e.CourseID == id);
         }
-    }
 
+        public async Task<IActionResult> Clone(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var course = await _context.Courses.AsNoTracking().FirstOrDefaultAsync(m => m.CourseID == id);
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+
+            var clonedcourse = new Course
+            {
+                Title = course.Title,
+                Credits = course.Credits,
+            };
+
+            _context.Courses.Add(clonedcourse);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+    }
 }
